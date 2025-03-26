@@ -1,0 +1,44 @@
+﻿@page
+@model DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Hotel Overview</h2>
+<ul class="list-group">
+    <li class="list-group-item">Total Bookings: @Model.Bookings.Count</li>
+    <li class="list-group-item">Total Guests: @Model.Guests.Count</li>
+    <li class="list-group-item">Rooms Available: @Model.Rooms.Count(r => r.IsAvailable)</li>
+    <li class="list-group-item">Total Staff: @Model.StaffList.Count</li>
+</ul>
+
+<canvas id="dashboardChart"></canvas>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('dashboardChart');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Camere disponibile', 'Camere ocupate'],
+                datasets: [{
+                    label: 'Disponibilitate camere',
+                    data: [@Model.AvailableRooms, @Model.OccupiedRooms],
+                    backgroundColor: ['#28a745', '#dc3545']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Starea curenta a camerelor'
+                    }
+                }
+            }
+        });
+    </script>
+}

@@ -1,0 +1,22 @@
+﻿@page
+@model StaffModel
+@{
+    ViewData["Title"] = "Personal";
+}
+
+<h2>Personal</h2>
+<table class="table">
+    <thead>
+        <tr><th>Nume</th><th>Pozitie</th><th>Contact</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var staff in Model.StaffList)
+        {
+            <tr>
+                <td>@staff.Name</td>
+                <td>@staff.Position</td>
+                <td>@staff.Contact</td>
+            </tr>
+        }
+    </tbody>
+</table>

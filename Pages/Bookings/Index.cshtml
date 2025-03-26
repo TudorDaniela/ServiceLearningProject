@@ -1,0 +1,23 @@
+﻿@page
+@model BookingsModel
+@{
+    ViewData["Title"] = "Rezervari";
+}
+
+<h2>Rezervari</h2>
+<table class="table">
+    <thead>
+        <tr><th>Oaspete</th><th>Camera</th><th>Check-In</th><th>Check-Out</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model.Bookings)
+        {
+            <tr>
+                <td>@booking.GuestName</td>
+                <td>@booking.RoomNumber</td>
+                <td>@booking.CheckIn.ToShortDateString()</td>
+                <td>@booking.CheckOut.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

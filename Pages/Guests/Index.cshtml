@@ -1,0 +1,22 @@
+﻿@page
+@model GuestsModel
+@{
+    ViewData["Title"] = "Oaspeti";
+}
+
+<h2>Oaspeti</h2>
+<table class="table">
+    <thead>
+        <tr><th>Nume</th><th>Email</th><th>Telefon</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var guest in Model.Guests)
+        {
+            <tr>
+                <td>@guest.FullName</td>
+                <td>@guest.Email</td>
+                <td>@guest.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+﻿@page
+@model RoomsModel
+@{
+    ViewData["Title"] = "Camere";
+}
+
+<h2>Room Status</h2>
+<table class="table">
+    <thead>
+        <tr><th>Camera #</th><th>Tip</th><th>Disponibilitate</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model.Rooms)
+        {
+            <tr>
+                <td>@room.RoomNumber</td>
+                <td>@room.Type</td>
+                <td>@(room.IsAvailable ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>
