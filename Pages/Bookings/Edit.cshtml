@@ -1,0 +1,37 @@
+﻿@page "{id:int}"
+@model EditBookingModel
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<h2>Edit Booking</h2>
+
+<form method="post" class="needs-validation">
+    <input type="hidden" asp-for="Booking.Id" />
+    <div class="mb-3">
+        <label asp-for="Booking.GuestName" class="form-label"></label>
+        <input asp-for="Booking.GuestName" class="form-control" />
+        <span asp-validation-for="Booking.GuestName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.RoomNumber" class="form-label"></label>
+        <input asp-for="Booking.RoomNumber" class="form-control" />
+        <span asp-validation-for="Booking.RoomNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.CheckIn" class="form-label"></label>
+        <input asp-for="Booking.CheckIn" class="form-control" type="date" />
+        <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.CheckOut" class="form-label"></label>
+        <input asp-for="Booking.CheckOut" class="form-control" type="date" />
+        <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Salvare</button>
+    <a asp-page="Index" class="btn btn-secondary">Anulare</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

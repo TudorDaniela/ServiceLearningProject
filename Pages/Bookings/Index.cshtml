@@ -5,6 +5,8 @@
 }
 
 <h2>Rezervari</h2>
+
+<a asp-page="Create" class="btn btn-success mb-3">➕ Adaugare rezervare</a>
 <table class="table">
     <thead>
         <tr><th>Oaspete</th><th>Camera</th><th>Check-In</th><th>Check-Out</th></tr>
@@ -17,6 +19,12 @@
                 <td>@booking.RoomNumber</td>
                 <td>@booking.CheckIn.ToShortDateString()</td>
                 <td>@booking.CheckOut.ToShortDateString()</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@booking.Id" class="btn btn-sm btn-primary">✏️ Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@booking.Id" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">🗑️ Delete</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

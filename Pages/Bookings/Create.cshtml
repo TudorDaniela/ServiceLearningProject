@@ -1,0 +1,36 @@
+﻿@page
+@model CreateBookingModel
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<h2>Create New Booking</h2>
+
+<form method="post" class="needs-validation">
+    <div class="mb-3">
+        <label asp-for="Booking.GuestName" class="form-label"></label>
+        <input asp-for="Booking.GuestName" class="form-control" />
+        <span asp-validation-for="Booking.GuestName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.RoomNumber" class="form-label"></label>
+        <input asp-for="Booking.RoomNumber" class="form-control" />
+        <span asp-validation-for="Booking.RoomNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.CheckIn" class="form-label"></label>
+        <input asp-for="Booking.CheckIn" class="form-control" type="date" />
+        <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Booking.CheckOut" class="form-label"></label>
+        <input asp-for="Booking.CheckOut" class="form-control" type="date" />
+        <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Creare rezervare</button>
+    <a asp-page="Index" class="btn btn-secondary">ANulare</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
