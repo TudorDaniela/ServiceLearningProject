@@ -6,25 +6,58 @@
     <title>@ViewData["Title"] - Hotel Admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <style>
-        body {
-            padding-top: 60px;
-            background-color: var(--bs-body-bg);
-            color: var(--bs-body-color);
+        body, .navbar, .container, .card, .footer, .bg-body-secondary, .bg-body-tertiary {
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #121212;
+            --bs-body-color: #e0e0e0;
+            --bs-body-secondary-bg: #1f1f1f;
+            --bs-body-secondary-color: #bbbbbb;
+            --bs-body-tertiary-bg: #2a2a2a;
         }
-        .container {
-            max-width: 960px;
+
+        #toggleTheme {
+            transition: all 0.3s ease;
         }
-        h2 {
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+
+        .navbar-futuristic {
+            background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
+
+        .navbar-nav .nav-link {
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+            .navbar-nav .nav-link::after {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: cyan;
+                transition: width 0.3s ease;
+            }
+
+            .navbar-nav .nav-link:hover::after {
+                width: 100%;
+            }
+
+            .navbar-nav .nav-link:hover {
+                color: #00ffff;
+            }
     </style>
 </head>
 <body data-bs-theme="light">
-    <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark navbar-futuristic">
         <div class="container">
             <a class="navbar-brand" href="/">Hotel Admin</a>
             <div class="collapse navbar-collapse">
@@ -57,12 +90,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const toggleThemeBtn = document.getElementById('toggleTheme');
+        const body = document.body;
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-bs-theme', savedTheme);
+            toggleThemeBtn.innerText = savedTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+        }
+
         toggleThemeBtn.addEventListener('click', () => {
-            const body = document.body;
             const currentTheme = body.getAttribute('data-bs-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             body.setAttribute('data-bs-theme', newTheme);
             toggleThemeBtn.innerText = newTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+            localStorage.setItem('theme', newTheme);
         });
     </script>
     @RenderSection("Scripts", required: false)
